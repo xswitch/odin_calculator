@@ -2,6 +2,7 @@ const calculator = {
     numberElements: document.querySelectorAll('.number'),
     operatorElements: document.querySelectorAll('.operator'),
     display: document.querySelector('.displayText'),
+    displayStored: document.querySelector('.displayStored')
 }
 
 function add(num1, num2) {
@@ -45,20 +46,33 @@ calculator.numberElements.forEach((number) => {
         if (storedOperator == '') { // If no operator, store first text
             currentNumber = Number(calculator.display.textContent);
         } else { //Stores the number after operator
-            let textAfterOperator = calculator.display.textContent.slice(storedNumber.toString().length+1);
+            let textAfterOperator = calculator.display.textContent.slice(storedNumber.toString().length+3);
             currentNumber = Number(textAfterOperator);
         }
-        console.log(currentNumber);
     })
 })
 
 calculator.operatorElements.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (storedOperator != '') return
-        calculator.display.textContent += operator.dataset.operator;
-        storedOperator = operator.dataset.operator;
-        storedNumber = currentNumber;
-        currentNumber = 0
+        if (storedOperator != '' && storedNumber != 0 && currentNumber != 0) {
+            const result = operate(storedOperator, storedNumber, currentNumber)
+            storedNumber = result;
+            currentNumber = 0;
+            storedOperator = operator.dataset.operator;
+            calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
+            calculator.display.textContent = ` ${storedNumber} ${storedOperator} `
+            console.log(result)
+        } else { //If no number exists store it and operator
+            if (storedNumber == 0) {
+                storedOperator = operator.dataset.operator;
+                storedNumber = currentNumber;
+                calculator.display.textContent = `${storedNumber} ${operator.dataset.operator} `;
+                currentNumber = 0
+            } else { // else store a new operator but keep number
+                storedOperator = operator.dataset.operator;
+                calculator.display.textContent = `${storedNumber} ${operator.dataset.operator} `;
+            }
+        }
     })
 })
 
