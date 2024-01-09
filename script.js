@@ -2,7 +2,8 @@ const calculator = {
     numberElements: document.querySelectorAll('.number'),
     operatorElements: document.querySelectorAll('.operator'),
     display: document.querySelector('.displayText'),
-    displayStored: document.querySelector('.displayStored')
+    displayStored: document.querySelector('.displayStored'),
+    clearButton: document.querySelector('#clear'),
 }
 
 function add(num1, num2) {
@@ -34,6 +35,14 @@ function operate(operator, firstNum, secondNum) {
         default:
             break;
     }
+}
+
+function clear() {
+    calculator.display.textContent = '0'
+    calculator.displayStored.textContent = '0'
+    storedNumber = 0;
+    storedOperator = ''
+    currentNumber = 0;
 }
 
 calculator.numberElements.forEach((number) => {
@@ -75,6 +84,8 @@ calculator.operatorElements.forEach((operator) => {
         }
     })
 })
+
+calculator.clearButton.addEventListener('click', clear);
 
 let storedNumber = 0;
 let currentNumber = 0;
