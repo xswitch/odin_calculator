@@ -64,7 +64,7 @@ calculator.numberElements.forEach((number) => {
 calculator.operatorElements.forEach((operator) => {
     operator.addEventListener('click', () => {
         if (storedOperator != '' && storedNumber != 0 && currentNumber != 0) {
-            const result = operate(storedOperator, storedNumber, currentNumber)
+            const result = operate(storedOperator, storedNumber, currentNumber).toFixed(2)
             storedNumber = result;
             currentNumber = 0;
             storedOperator = operator.dataset.operator;
@@ -87,7 +87,7 @@ calculator.operatorElements.forEach((operator) => {
 
 document.querySelector('.equal').addEventListener('click', () => {
     if (storedNumber != 0 && currentNumber != 0 && storedOperator != 0) {
-        const result = operate(storedOperator, storedNumber, currentNumber)
+        const result = operate(storedOperator, storedNumber, currentNumber).toFixed(2)
         calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
         calculator.display.textContent = result;
 
