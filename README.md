@@ -14,3 +14,6 @@ select second number. If firstNumber is not 0 then set second number.
 ---
 Select another operator if not "=" set result as first number and operator as current operator then go directly to step 3 and reset secondNumber.
 else show results and reset operator and secondNumber variables.
+
+number pressed -> store value
+operator pressed -> store second value
