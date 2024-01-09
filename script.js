@@ -42,10 +42,26 @@ calculator.numberElements.forEach((number) => {
         // Removes the 0 if a number is pressed
         if (number.dataset.number != '.' && calculator.display.textContent == '0') calculator.display.textContent = '';
         calculator.display.textContent = calculator.display.textContent + number.dataset.number;
-        currentNumber = Number(calculator.display.textContent);
+        if (storedOperator == '') { // If no operator, store first text
+            currentNumber = Number(calculator.display.textContent);
+        } else { //Stores the number after operator
+            let textAfterOperator = calculator.display.textContent.slice(storedNumber.toString().length+1);
+            currentNumber = Number(textAfterOperator);
+        }
         console.log(currentNumber);
     })
 })
+
+calculator.operatorElements.forEach((operator) => {
+    operator.addEventListener('click', () => {
+        if (storedOperator != '') return
+        calculator.display.textContent += operator.dataset.operator;
+        storedOperator = operator.dataset.operator;
+        storedNumber = currentNumber;
+        currentNumber = 0
+    })
+})
+
 let storedNumber = 0;
 let currentNumber = 0;
-let operator = '';
+let storedOperator = '';
