@@ -1,5 +1,6 @@
 const calculator = {
     numberElements: document.querySelectorAll('.number'),
+    operatorElements: document.querySelectorAll('.operator'),
     display: document.querySelector('.displayText'),
 }
 
@@ -39,9 +40,9 @@ calculator.numberElements.forEach((number) => {
         // Checks if there already is another . in there
         if (number.dataset.number == '.' && calculator.display.textContent.includes('.')) return;
         // Removes the 0 if a number is pressed
-        if (number.dataset.number != '.' && calculator.display.textContent == '0') calculator.display.textContent = ''
+        if (number.dataset.number != '.' && calculator.display.textContent == '0') calculator.display.textContent = '';
         calculator.display.textContent = calculator.display.textContent + number.dataset.number;
-        currentNumber = Number(calculator.display.textContent)
+        currentNumber = Number(calculator.display.textContent);
         console.log(currentNumber);
     })
 })
