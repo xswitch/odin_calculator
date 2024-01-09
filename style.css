@@ -49,9 +49,7 @@ body {
     grid-template-rows: repeat(5, 1fr);
 }
 
-.action,
-.operator,
-.number {
+button {
     font-size: 32px;
     font-weight: 100;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -67,7 +65,8 @@ button:active {
     transform: scale(0.96);
 }
 
-.operator {
+.operator,
+.equal {
     background-color: orange;
     color: white;
 }

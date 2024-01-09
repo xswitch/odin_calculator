@@ -85,6 +85,17 @@ calculator.operatorElements.forEach((operator) => {
     })
 })
 
+document.querySelector('.equal').addEventListener('click', () => {
+    if (storedNumber != 0 && currentNumber != 0 && storedOperator != 0) {
+        const result = operate(storedOperator, storedNumber, currentNumber)
+        calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
+        calculator.display.textContent = result;
+
+        storedNumber = result
+        currentNumber = 0;
+    }
+})
+
 calculator.clearButton.addEventListener('click', clear);
 
 let storedNumber = 0;
