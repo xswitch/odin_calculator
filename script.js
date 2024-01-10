@@ -114,7 +114,7 @@ document.querySelector('.equal').addEventListener('click', () => {
         calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
         calculator.display.textContent = result;
 
-        firstNumber = result
+        firstNumber = result.toString()
         secondNumber = '';
         storedOperator = ''
         updateDisplay()
@@ -124,8 +124,6 @@ document.querySelector('.equal').addEventListener('click', () => {
 calculator.clearButton.addEventListener('click', clear);
 
 // first number, operator, second number
-let states = [0, '', 0]
-let currentState = 0;
 let firstNumber = '0'
 let secondNumber = ''
 let storedOperator = '';
