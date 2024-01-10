@@ -96,8 +96,7 @@ calculator.operatorElements.forEach((operator) => {
         // Operator is not empty
         // 1 and 2 num has a number above or below 0
         if (firstNumber != '0' && storedOperator != '' && secondNumber != '' && Number(secondNumber) != 0 && Number(firstNumber) != 0) {
-            console.table(firstNumber, secondNumber, storedOperator)
-
+            // Operate if all values are already there
             const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
             storedOperator = curOperator;
             firstNumber = result.toString()
