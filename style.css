@@ -20,10 +20,10 @@ body {
 }
 
 .display {
-    background-color: dimgray;
+    background-color: rgb(70, 70, 70);
     border: 1px solid black;
     color: white;
-    font-size: 48px;
+    font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: right;
     display: flex;
@@ -33,7 +33,11 @@ body {
 }
 
 .displayText {
+    padding: 20px;
+}
 
+.displayStored {
+    padding: 20px;
 }
 
 .displayStored {
@@ -67,7 +71,7 @@ button:active {
 
 .operator,
 .equal {
-    background-color: orange;
+    background-color: darkorange;
     color: white;
 }
 

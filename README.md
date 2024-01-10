@@ -8,3 +8,8 @@ check if there is a number in first number before allowing operator to be select
 TODO
 # -> Make a negative button, to turn the current number negative/positive
 # -> Add a backspace button, to remove last entered number
+
+FIX
+# -> Decimal can be placed before numbers on second number
+
+# STYLE IT UP
