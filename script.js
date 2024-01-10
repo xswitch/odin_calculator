@@ -63,6 +63,7 @@ calculator.numberElements.forEach((number) => {
         } else { //Stores the number after operator
             let textAfterOperator = calculator.display.textContent.slice(storedNumber.toString().length+3);
             currentNumber = Number(textAfterOperator);
+            console.log(textAfterOperator);
         }
     })
 })
@@ -104,6 +105,10 @@ document.querySelector('.equal').addEventListener('click', () => {
 })
 
 calculator.clearButton.addEventListener('click', clear);
+
+// first number, operator, second number
+let states = [0, '', 0]
+let currentState = 0;
 
 let storedNumber = 0;
 let currentNumber = 0;
