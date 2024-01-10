@@ -66,8 +66,10 @@ function checkNumInput(input, num) {
         num += input;
     } else if (num == '0') {
         num = input;
+    } else if (num == '' && input == '.') {
+        num = '0.'
     } else {
-    num += input;
+        num += input;
     }
     return num;
 }
