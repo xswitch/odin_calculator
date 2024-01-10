@@ -6,7 +6,9 @@ check if there is a number in first number before allowing operator to be select
 
 
 TODO
-# -> Make a negative button, to turn the current number negative/positive
+# -> keyboard support
+# -> Operator and number input in their own functions
+# -> 
 
 # STYLE IT UP
 

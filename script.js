@@ -45,7 +45,7 @@ function operate(operator, firstNum, secondNum) {
 
 function clear() {
     calculator.display.textContent = '0'
-    calculator.displayStored.textContent = '0'
+    calculator.displayStored.textContent = ''
     firstNumber = '0';
     storedOperator = ''
     secondNumber = '';
