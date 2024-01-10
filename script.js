@@ -55,39 +55,31 @@ function updateDisplay() {
     calculator.display.textContent = `${firstNumber} ${storedOperator} ${secondNumber}`
 }
 
+function checkNumInput(input, num) {
+    // checks for double 0 at the start
+    if (num == '0' && input == '0') return
+    // Checks for multiple decimals
+    if (num.includes('.') && input == '.') return;
+
+    // Don't remove 0 if '.' is pressed, otherwise remove it. or if 0 is not first, add onto
+    if (num == '0' && input == '.') {
+        num += input;
+    } else if (num == '0') {
+        num = input;
+    } else {
+    num += input;
+    }
+    return num;
+}
+
 calculator.numberElements.forEach((number) => {
     number.addEventListener('click', () => {
         const num = number.dataset.number;
         if (storedOperator == '') { //First number
-            // checks for double 0 at the start
-            if (firstNumber == '0' && num == '0') return
-            // Checks for multiple decimals
-            if (firstNumber.includes('.') && num == '.') return;
-
-            // Don't remove 0 if '.' is pressed, otherwise remove it. or if 0 is not first, add onto
-            if (firstNumber == '0' && num == '.') {
-                firstNumber += num;
-            } else if (firstNumber == '0') {
-                firstNumber = num;
-            } else {
-                firstNumber += num;
-            }
-            console.log(firstNumber);
+            firstNumber = checkNumInput(num, firstNumber)
         } else { //Second number
             // checks for double 0 at the start
-            if (secondNumber == '0' && num == '0') return
-            // Checks for multiple decimals
-            if (secondNumber.includes('.') && num == '.') return;
-
-            // Don't remove 0 if '.' is pressed, otherwise remove it. or if 0 is not first, add onto
-            if (secondNumber == '0' && num == '.') {
-                secondNumber += num;
-            } else if (secondNumber == '0') {
-                secondNumber = num;
-            } else {
-                secondNumber += num;
-            }
-            console.log(secondNumber);
+            secondNumber = checkNumInput(num, secondNumber)
         }
         updateDisplay()
     })
