@@ -69,6 +69,7 @@ calculator.numberElements.forEach((number) => {
 
 calculator.operatorElements.forEach((operator) => {
     operator.addEventListener('click', () => {
+        if (storedNumber == 0 && currentNumber == 0) return;
         if (storedOperator != '' && storedNumber != 0 && currentNumber != 0) {
             const result = operate(storedOperator, storedNumber, currentNumber)
             storedNumber = result;
