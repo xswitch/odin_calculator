@@ -59,7 +59,7 @@ function checkNumInput(input, num) {
     // checks for double 0 at the start
     if (num == '0' && input == '0') return
     // Checks for multiple decimals
-    if (num.includes('.') && input == '.') return;
+    if (num.includes('.') && input == '.') return num;
 
     // Don't remove 0 if '.' is pressed, otherwise remove it. or if 0 is not first, add onto
     if (num == '0' && input == '.') {
@@ -98,7 +98,7 @@ calculator.operatorElements.forEach((operator) => {
 
             const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
             storedOperator = curOperator;
-            firstNumber = result
+            firstNumber = result.toString()
             secondNumber = '';
             calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
         } else if (Number(firstNumber) != 0) {
