@@ -72,6 +72,23 @@ function updateDisplay() {
     calculator.display.textContent = `${firstNumber} ${storedOperator} ${secondNumber}`
 }
 
+function changeNegative() {
+    if (storedOperator == '') {
+        if (firstNumber[0] == '-') {
+            firstNumber = firstNumber.slice(1);
+        } else {
+            firstNumber = `-${firstNumber}`
+        }
+    } else {
+        if (secondNumber[0] == '-') {
+            secondNumber = secondNumber.slice(1);
+        } else {
+            secondNumber = `-${secondNumber}`
+        }
+    }
+    updateDisplay()
+}
+
 function checkNumInput(input, num) {
     // checks for double 0 at the start
     if (num == '0' && input == '0') return num;
@@ -140,6 +157,7 @@ document.querySelector('.equal').addEventListener('click', () => {
 })
 
 document.querySelector('.backspace').addEventListener('click', backSpace);
+document.querySelector('#negative').addEventListener('click', changeNegative)
 
 calculator.clearButton.addEventListener('click', clear);
 
