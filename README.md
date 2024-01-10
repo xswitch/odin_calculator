@@ -12,7 +12,4 @@ BUGS TO FIX
 # Only the first number can use decimals
  -> if storedNumber is not 0 check after operator for a decimal.
 
-# toFixed only if needed.
- -> toFixed in operate function
- -> compare result before returning
- -> Use modulus to check if anything remains, if so return toFixed
+# Number 0 can still be typed after operator is set

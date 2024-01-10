@@ -23,18 +23,24 @@ function divide(num1, num2) {
 }
 
 function operate(operator, firstNum, secondNum) {
+    let result;
     switch (operator) {
         case '+':
-            return add(firstNum, secondNum);
+            result = add(firstNum, secondNum);
+            break;
         case '-':
-            return subtract(firstNum, secondNum);
+            result = subtract(firstNum, secondNum);
+            break;
         case '*':
-            return multiply(firstNum, secondNum);
+            result = multiply(firstNum, secondNum);
+            break;
         case '/':
-            return divide(firstNum, secondNum);
+            result = divide(firstNum, secondNum);
+            break;
         default:
             break;
     }
+    return (result % 1 == 0) ? result : result.toFixed(2) 
 }
 
 function clear() {
@@ -64,7 +70,7 @@ calculator.numberElements.forEach((number) => {
 calculator.operatorElements.forEach((operator) => {
     operator.addEventListener('click', () => {
         if (storedOperator != '' && storedNumber != 0 && currentNumber != 0) {
-            const result = operate(storedOperator, storedNumber, currentNumber).toFixed(2)
+            const result = operate(storedOperator, storedNumber, currentNumber)
             storedNumber = result;
             currentNumber = 0;
             storedOperator = operator.dataset.operator;
@@ -87,7 +93,7 @@ calculator.operatorElements.forEach((operator) => {
 
 document.querySelector('.equal').addEventListener('click', () => {
     if (storedNumber != 0 && currentNumber != 0 && storedOperator != 0) {
-        const result = operate(storedOperator, storedNumber, currentNumber).toFixed(2)
+        const result = operate(storedOperator, storedNumber, currentNumber)
         calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
         calculator.display.textContent = result;
 
