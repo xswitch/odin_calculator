@@ -108,40 +108,36 @@ function checkNumInput(input, num) {
     return num;
 }
 
-calculator.numberElements.forEach((number) => {
-    number.addEventListener('click', () => {
-        const num = number.dataset.number;
-        if (storedOperator == '') { //First number
-            firstNumber = checkNumInput(num, firstNumber)
-        } else { //Second number
-            // checks for double 0 at the start
-            secondNumber = checkNumInput(num, secondNumber)
-        }
-        updateDisplay()
-    })
-})
+function addNumber(e) {
+    const num = e.target.dataset.number;
+    if (storedOperator == '') { //First number
+        firstNumber = checkNumInput(num, firstNumber)
+    } else { //Second number
+        // checks for double 0 at the start
+        secondNumber = checkNumInput(num, secondNumber)
+    }
+    updateDisplay()
+}
 
-calculator.operatorElements.forEach((operator) => {
-    operator.addEventListener('click', () => {
-        const curOperator = operator.dataset.operator
-        if (firstNumber == 0 && secondNumber == 0) return;
+function addOperator(e) {
+    const curOperator = e.target.dataset.operator
+    if (firstNumber == 0 && secondNumber == 0) return;
 
-        // Checks if everything is there
-        // Operator is not empty
-        // 1 and 2 num has a number above or below 0
-        if (firstNumber != '0' && storedOperator != '' && secondNumber != '' && Number(secondNumber) != 0 && Number(firstNumber) != 0) {
-            // Operate if all values are already there
-            const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
-            storedOperator = curOperator;
-            firstNumber = result.toString()
-            secondNumber = '';
-            calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
-        } else if (Number(firstNumber) != 0) {
-            storedOperator = curOperator;
-        }
-        updateDisplay()
-    })
-})
+    // Checks if everything is there
+    // Operator is not empty
+    // 1 and 2 num has a number above or below 0
+    if (firstNumber != '0' && storedOperator != '' && secondNumber != '' && Number(secondNumber) != 0 && Number(firstNumber) != 0) {
+        // Operate if all values are already there
+        const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
+        storedOperator = curOperator;
+        firstNumber = result.toString()
+        secondNumber = '';
+        calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
+    } else if (Number(firstNumber) != 0) {
+        storedOperator = curOperator;
+    }
+    updateDisplay()
+}
 
 document.querySelector('.equal').addEventListener('click', () => {
     if (Number(firstNumber) != 0 && Number(secondNumber) != 0 && storedOperator != '') {
@@ -158,6 +154,14 @@ document.querySelector('.equal').addEventListener('click', () => {
 
 document.querySelector('.backspace').addEventListener('click', backSpace);
 document.querySelector('#negative').addEventListener('click', changeNegative)
+
+calculator.numberElements.forEach((number) => {
+    number.addEventListener('click', addNumber)
+})
+
+calculator.operatorElements.forEach((operator) => {
+    operator.addEventListener('click', addOperator)
+})
 
 calculator.clearButton.addEventListener('click', clear);
 
