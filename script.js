@@ -46,50 +46,72 @@ function operate(operator, firstNum, secondNum) {
 function clear() {
     calculator.display.textContent = '0'
     calculator.displayStored.textContent = '0'
-    storedNumber = 0;
+    firstNumber = 0;
     storedOperator = ''
-    currentNumber = 0;
+    secondNumber = 0;
+}
+
+function updateDisplay() {
+    calculator.display.textContent = `${firstNumber} ${storedOperator} ${secondNumber}`
 }
 
 calculator.numberElements.forEach((number) => {
     number.addEventListener('click', () => {
-        // Checks if there already is another . in there
-        if (number.dataset.number == '.' && calculator.display.textContent.includes('.')) return;
-        // Removes the 0 if a number is pressed
-        if (number.dataset.number != '.' && calculator.display.textContent == '0') calculator.display.textContent = '';
-        calculator.display.textContent = calculator.display.textContent + number.dataset.number;
-        if (storedOperator == '') { // If no operator, store first text
-            currentNumber = Number(calculator.display.textContent);
-        } else { //Stores the number after operator
-            let textAfterOperator = calculator.display.textContent.slice(storedNumber.toString().length+3);
-            currentNumber = Number(textAfterOperator);
-            console.log(textAfterOperator);
+        const num = number.dataset.number;
+        if (storedOperator == '') { //First number
+            // checks for double 0 at the start
+            if (firstNumber == '0' && num == '0') return
+            // Checks for multiple decimals
+            if (firstNumber.includes('.') && num == '.') return;
+
+            // Don't remove 0 if '.' is pressed, otherwise remove it. or if 0 is not first, add onto
+            if (firstNumber == '0' && num == '.') {
+                firstNumber += num;
+            } else if (firstNumber == '0') {
+                firstNumber = num;
+            } else {
+                firstNumber += num;
+            }
+            console.log(firstNumber);
+        } else { //Second number
+            // checks for double 0 at the start
+            if (secondNumber == '0' && num == '0') return
+            // Checks for multiple decimals
+            if (secondNumber.includes('.') && num == '.') return;
+
+            // Don't remove 0 if '.' is pressed, otherwise remove it. or if 0 is not first, add onto
+            if (secondNumber == '0' && num == '.') {
+                secondNumber += num;
+            } else if (secondNumber == '0') {
+                secondNumber = num;
+            } else {
+                secondNumber += num;
+            }
+            console.log(secondNumber);
         }
+        updateDisplay()
     })
 })
 
 calculator.operatorElements.forEach((operator) => {
     operator.addEventListener('click', () => {
-        if (storedNumber == 0 && currentNumber == 0) return;
-        if (storedOperator != '' && storedNumber != 0 && currentNumber != 0) {
-            const result = operate(storedOperator, storedNumber, currentNumber)
-            storedNumber = result;
-            currentNumber = 0;
-            storedOperator = operator.dataset.operator;
-            calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
-            calculator.display.textContent = ` ${storedNumber} ${storedOperator} `
-            console.log(result)
-        } else { //If no number exists store it and operator
-            if (storedNumber == 0) {
-                storedOperator = operator.dataset.operator;
-                storedNumber = currentNumber;
-                calculator.display.textContent = `${storedNumber} ${operator.dataset.operator} `;
-                currentNumber = 0
-            } else { // else store a new operator but keep number
-                storedOperator = operator.dataset.operator;
-                calculator.display.textContent = `${storedNumber} ${operator.dataset.operator} `;
-            }
+        const curOperator = operator.dataset.operator
+        if (firstNumber == 0 && secondNumber == 0) return;
+
+        // Checks if everything is there
+        // Operator is not empty
+        // 1 and 2 num has a number above or below 0
+        if (firstNumber != '0' && storedOperator != '' && secondNumber != '' && Number(secondNumber) != 0 && Number(firstNumber) != 0) {
+            console.table(firstNumber, secondNumber, storedOperator)
+
+            const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
+            storedOperator = curOperator;
+            firstNumber = result
+            secondNumber = '';
+        } else if (Number(firstNumber) != 0) {
+            storedOperator = curOperator;
         }
+        updateDisplay()
     })
 })
 
@@ -109,7 +131,6 @@ calculator.clearButton.addEventListener('click', clear);
 // first number, operator, second number
 let states = [0, '', 0]
 let currentState = 0;
-
-let storedNumber = 0;
-let currentNumber = 0;
+let firstNumber = '0'
+let secondNumber = ''
 let storedOperator = '';
