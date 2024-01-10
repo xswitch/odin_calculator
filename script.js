@@ -51,6 +51,23 @@ function clear() {
     secondNumber = '';
 }
 
+function backSpace() {
+    if (storedOperator == '') {
+        if (firstNumber.length <= 1) {
+            firstNumber = '0';   
+        } else {
+            firstNumber = firstNumber.slice(0, firstNumber.length-1)
+        }
+    } else {
+        if (secondNumber.length <= 1) {
+            secondNumber = '0'
+        } else {
+        secondNumber = secondNumber.slice(0, secondNumber.length-1)
+        }
+    }
+    updateDisplay()
+}
+
 function updateDisplay() {
     calculator.display.textContent = `${firstNumber} ${storedOperator} ${secondNumber}`
 }
@@ -121,6 +138,8 @@ document.querySelector('.equal').addEventListener('click', () => {
         updateDisplay()
     }
 })
+
+document.querySelector('.backspace').addEventListener('click', backSpace);
 
 calculator.clearButton.addEventListener('click', clear);
 
