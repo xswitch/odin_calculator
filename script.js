@@ -46,9 +46,9 @@ function operate(operator, firstNum, secondNum) {
 function clear() {
     calculator.display.textContent = '0'
     calculator.displayStored.textContent = '0'
-    firstNumber = 0;
+    firstNumber = '0';
     storedOperator = ''
-    secondNumber = 0;
+    secondNumber = '';
 }
 
 function updateDisplay() {
@@ -100,6 +100,7 @@ calculator.operatorElements.forEach((operator) => {
             storedOperator = curOperator;
             firstNumber = result
             secondNumber = '';
+            calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
         } else if (Number(firstNumber) != 0) {
             storedOperator = curOperator;
         }
@@ -108,13 +109,15 @@ calculator.operatorElements.forEach((operator) => {
 })
 
 document.querySelector('.equal').addEventListener('click', () => {
-    if (storedNumber != 0 && currentNumber != 0 && storedOperator != 0) {
-        const result = operate(storedOperator, storedNumber, currentNumber)
+    if (Number(firstNumber) != 0 && Number(secondNumber) != 0 && storedOperator != '') {
+        const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
         calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
         calculator.display.textContent = result;
 
-        storedNumber = result
-        currentNumber = 0;
+        firstNumber = result
+        secondNumber = '';
+        storedOperator = ''
+        updateDisplay()
     }
 })
 
