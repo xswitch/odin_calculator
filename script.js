@@ -57,7 +57,7 @@ function updateDisplay() {
 
 function checkNumInput(input, num) {
     // checks for double 0 at the start
-    if (num == '0' && input == '0') return
+    if (num == '0' && input == '0') return num;
     // Checks for multiple decimals
     if (num.includes('.') && input == '.') return num;
 
