@@ -4,6 +4,9 @@ const calculator = {
     display: document.querySelector('.displayText'),
     displayStored: document.querySelector('.displayStored'),
     clearButton: document.querySelector('#clear'),
+    equalButton: document.querySelector('.equal'),
+    backspaceButton: document.querySelector('.backspace'),
+    negativeButton: document.querySelector('#negative'),
 }
 
 function add(num1, num2) {
@@ -139,11 +142,11 @@ function addOperator(e) {
     updateDisplay()
 }
 
-document.querySelector('.equal').addEventListener('click', () => {
+// All event listeners
+calculator.equalButton.addEventListener('click', () => {
     if (Number(firstNumber) != 0 && Number(secondNumber) != 0 && storedOperator != '') {
         const result = operate(storedOperator, Number(firstNumber), Number(secondNumber))
         calculator.displayStored.textContent = `${calculator.display.textContent} = ${result}`;
-        calculator.display.textContent = result;
 
         firstNumber = result.toString()
         secondNumber = '';
@@ -152,8 +155,8 @@ document.querySelector('.equal').addEventListener('click', () => {
     }
 })
 
-document.querySelector('.backspace').addEventListener('click', backSpace);
-document.querySelector('#negative').addEventListener('click', changeNegative)
+calculator.backspaceButton.addEventListener('click', backSpace);
+calculator.negativeButton.addEventListener('click', changeNegative)
 
 calculator.numberElements.forEach((number) => {
     number.addEventListener('click', addNumber)
@@ -164,6 +167,21 @@ calculator.operatorElements.forEach((operator) => {
 })
 
 calculator.clearButton.addEventListener('click', clear);
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+    if (e.key == 'Enter') calculator.equalButton.click()
+    if (e.key == 'Backspace') calculator.backspaceButton.click()
+    if (e.key == 'Delete') calculator.clearButton.click()
+
+    calculator.numberElements.forEach(number => {
+        if (number.dataset.number == e.key) number.click();
+    });
+
+    calculator.operatorElements.forEach(operator => {
+        if (operator.dataset.operator == e.key) operator.click();
+    })
+})
 
 // first number, operator, second number
 let firstNumber = '0'

@@ -6,10 +6,5 @@ check if there is a number in first number before allowing operator to be select
 
 
 TODO
-# -> keyboard support
-# -> Operator and number input in their own functions
-# -> 
 
 # STYLE IT UP
-
-FIX
