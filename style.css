@@ -9,7 +9,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: bisque;
+    background-color: rgb(70, 70, 70);
 }
 
 .calculatorBody {
@@ -19,7 +19,7 @@ body {
     display: grid;
     grid-template-rows: 30% 70%;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 3px solid lightgray;
 }
 
 .display {
@@ -46,12 +46,12 @@ body {
 }
 
 .buttonContainer {
-    background-color: dimgray;
+    background-color: rgb(100, 100, 100);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 5px;
-    padding: 5px;
+    padding: 10px;
 }
 
 button {
