@@ -174,7 +174,7 @@ calculator.clearButton.addEventListener('click', clear);
 document.addEventListener('keydown', (e) => {
     if (e.key == 'Enter') calculator.equalButton.click()
     if (e.key == 'Backspace') calculator.backspaceButton.click()
-    if (e.key == 'Delete') calculator.clearButton.click()
+    if (e.key == 'Delete' || e.key == 'c') calculator.clearButton.click()
 
     calculator.numberElements.forEach(number => {
         if (number.dataset.number == e.key) number.click();
