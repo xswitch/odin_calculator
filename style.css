@@ -9,6 +9,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: bisque;
 }
 
 .calculatorBody {
@@ -17,11 +18,12 @@ body {
     width: 400px;
     display: grid;
     grid-template-rows: 30% 70%;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 .display {
     background-color: rgb(70, 70, 70);
-    border: 1px solid black;
     color: white;
     font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -42,7 +44,7 @@ body {
 
 .displayStored {
     color: lightgrey;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid white;
     width: 100%;
 }
 
@@ -51,6 +53,8 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+    padding: 5px;
 }
 
 button {
@@ -59,6 +63,7 @@ button {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border: 1px solid black;
     transition: all 0.1s;
+    border-radius: 5px;
 }
 
 button:hover {

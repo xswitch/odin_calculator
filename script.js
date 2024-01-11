@@ -172,7 +172,10 @@ calculator.clearButton.addEventListener('click', clear);
 
 // Keyboard support
 document.addEventListener('keydown', (e) => {
-    if (e.key == 'Enter') calculator.equalButton.click()
+    if (e.key == 'Enter') {
+        e.preventDefault()
+        calculator.equalButton.click()
+    }
     if (e.key == 'Backspace') calculator.backspaceButton.click()
     if (e.key == 'Delete' || e.key == 'c') calculator.clearButton.click()
 
