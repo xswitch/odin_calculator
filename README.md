@@ -7,4 +7,7 @@ check if there is a number in first number before allowing operator to be select
 
 TODO
 
+FIX
+# -> If calculator has -0 more 0's can be added.
+
 # STYLE IT UP

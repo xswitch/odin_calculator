@@ -93,8 +93,10 @@ function changeNegative() {
 }
 
 function checkNumInput(input, num) {
+    // Allow for more 0's if there is a decimal
+    if (num.includes('.') && input == '0') return num + '0'
     // checks for double 0 at the start
-    if (num == '0' && input == '0') return num;
+    if (Number(num) == 0 && input == '0') return num;
     // Checks for multiple decimals
     if (num.includes('.') && input == '.') return num;
 
