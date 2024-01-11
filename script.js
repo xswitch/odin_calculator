@@ -93,6 +93,8 @@ function changeNegative() {
 }
 
 function checkNumInput(input, num) {
+    // Allow a single 0 to be insert if number is empty
+    if (num == '' && input == '0') return '0'
     // Allow for more 0's if there is a decimal
     if (num.includes('.') && input == '0') return num + '0'
     // checks for double 0 at the start
@@ -118,7 +120,6 @@ function addNumber(e) {
     if (storedOperator == '') { //First number
         firstNumber = checkNumInput(num, firstNumber)
     } else { //Second number
-        // checks for double 0 at the start
         secondNumber = checkNumInput(num, secondNumber)
     }
     updateDisplay()
